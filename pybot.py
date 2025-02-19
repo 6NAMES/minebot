@@ -46,12 +46,13 @@ class PyBot(ChatBot, FarmBot, MineBot, GatherBot, BuildBot, CombatBot, MovementM
 
         bot = mineflayer.createBot(
             {
-            'host'    : self.account['host'],
-            'username': self.account['user'],
-            'password': self.account['password'],
-            'version': self.account['version'],
-            'hideErrors': False,
-            } )
+                'host': self.account['host'],
+                'port': self.account.get('port', 25565),  # Default to 25565 if not set
+                'username': self.account['user'],  # Must be your Minecraft username
+                'auth': 'microsoft',  # Uses Microsoft authentication
+                'version': self.account['version'],
+                'hideErrors': False,
+            })
 
         self.mcData   = require('minecraft-data')(bot.version)
         self.Block    = require('prismarine-block')(bot.version)
