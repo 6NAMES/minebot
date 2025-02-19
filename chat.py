@@ -85,7 +85,7 @@ class ChatBot:
         self.stopActivity = True
 
     def sleepInBed(self):
-        bed = self.findClosestBlock("White Bed",xz_radius=3,y_radius=1)
+        bed = self.findClosestBlock("White Bed",xz_radius=20,y_radius=20)
         if not bed:
             self.chat('cant find a White Bed nearby (I only use those)')
         else:
