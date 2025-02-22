@@ -122,10 +122,10 @@ class MineBot:
     }
 
     miningMinimumList = {
-        "Bread":1,
-        "Stone Pickaxe":2,
-        "Stone Shovel":1,
-        "Iron Pickaxe":1,
+        "Bread": 1,
+        "Stone Pickaxe": 2,
+        "Stone Shovel": 1,
+        "Iron Pickaxe": 1,
         "Torch": 5,
     }
 

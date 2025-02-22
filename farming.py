@@ -14,13 +14,14 @@ import time
 class FarmBot:
 
     farming_blocks = ["Wheat Crops"]
-    farming_items  = ["Wheat"]
-    farming_seeds  = ["Wheat Seeds"]
+    farming_items = ["Wheat"]
+    farming_seeds = ["Wheat Seeds"]
+
 
     farmingEquipList = {
-      "Wheat Seeds":64,
-      "Wheat":0,
-      "Bread":5,
+      "Wheat Seeds": 64,
+      "Wheat": 0,
+      "Bread": 5,
     }
 
     def __init__(self):

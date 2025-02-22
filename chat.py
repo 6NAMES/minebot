@@ -17,8 +17,25 @@ class ChatBot:
     activity_major = False
     activity_last_duration = 0
 
+
+
+    def checkNightAndSleep(self):
+        # Ensure we only check time every 5 seconds
+        if hasattr(self, 'lastTimeCheck') and time.time() - self.lastTimeCheck < 5:
+            return  # Skip this check if it's been less than 5 seconds
+
+        self.lastTimeCheck = time.time()  # Update last check time
+
+        if self.bot.time.timeOfDay >= 12000:  # Night starts at tick 12000
+            self.chat("It's nighttime, looking for a bed! 🛏️")
+            self.sleepInBed()
+
     def __init__(self):
         print('chat ', end='')
+
+        @On(self.bot, 'time')
+        def checkTime(*args):
+            self.checkNightAndSleep()
 
         # Command : [function, name, major activity flag, min_arguments]
 
@@ -85,12 +102,25 @@ class ChatBot:
         self.stopActivity = True
 
     def sleepInBed(self):
+<<<<<<< Updated upstream
         bed = self.findClosestBlock("White Bed",xz_radius=20,y_radius=20)
+=======
+        bed = self.findClosestBlock("White Bed", xz_radius=10, y_radius=10)
+
+>>>>>>> Stashed changes
         if not bed:
-            self.chat('cant find a White Bed nearby (I only use those)')
-        else:
+            self.chat("I can't find a White Bed nearby! 🛏️")
+            return
+
+        self.chat(f"Found a bed at {bed.position.x}, {bed.position.y}, {bed.position.z}. Moving to it...")
+
+        try:
+            # Try to sleep
             self.bot.sleep(bed)
-            self.chat('good night!')
+            self.chat("Good night! 😴")
+
+        except Exception as e:
+            self.chat("I can't sleep now")
 
     def wakeUp(self):
             self.bot.wake()
